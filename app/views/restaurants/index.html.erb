@@ -1,0 +1,9 @@
+<h1 class="text-center mt-4 mb-4">all restaurants</h1>
+<p class="text-center"><%= link_to 'add a restaurant', new_restaurant_path, class: 'btn btn-warning' %></p>
+
+<div class="container">
+
+  <% @restaurants.each do |resto| %>
+    <p><%= link_to resto.name, restaurant_path(resto) %></p>
+  <% end %>
+</div>

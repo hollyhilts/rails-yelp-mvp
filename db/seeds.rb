@@ -19,3 +19,12 @@ puts 'adding 30 restaurants'
   )
   puts "Restaurant #{resto.id} created !"
 end
+
+puts 'generating reviews'
+150.times do
+  Review.create!(
+    rating: rand(1..5),
+    content: Faker::Restaurant.review,
+    restaurant_id: rand(1..30)
+  )
+end

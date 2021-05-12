@@ -1,0 +1,46 @@
+<h1 class='text-center mt-4'><%= @restaurant.name %></h1>
+
+<div class="container">
+  <p>
+    <strong>category:</strong>
+    <%= @restaurant.category %>
+  </p>
+  <p>
+    <strong>address:</strong>
+    <%= @restaurant.address %>
+  </p>
+  <p>
+    <strong>phone number:</strong>
+    <%= @restaurant.phone_number %>
+  </p>
+  <p><%= link_to 'back to all restaurants', restaurants_path %></p>
+</div>
+
+<div class="container">
+  <p><strong>add a review:</strong></p>
+  <%= simple_form_for([@restaurant, @review]) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :rating %>
+      <%= f.input :content %>
+    </div>
+
+    <div class="form-actions mt-4 mb-4">
+      <%= f.button :submit, class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="container">
+  <p>
+    <strong>reviews:</strong>
+  </p>
+  <% @restaurant.reviews.each do |review| %>
+    <p>
+      <%= review.content %>
+      <strong><%= review.rating %> 🔥</strong>
+    </p>
+  <% end %>
+</div>
